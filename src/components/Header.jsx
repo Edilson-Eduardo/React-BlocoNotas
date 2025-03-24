@@ -1,9 +1,11 @@
 import { Home, Settings, Trash2, Menu, UserRound, ZoomIn } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom"; 
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const modalRef = useRef(null);
+    const location = useLocation();
 
     function showMenu() {
         setIsMenuOpen(!isMenuOpen);
@@ -18,8 +20,6 @@ function Header() {
 
         if (isMenuOpen) {
             document.addEventListener("click", handleClickOutside);
-        } else {
-            document.removeEventListener("click", handleClickOutside);
         }
 
         return () => {
@@ -37,11 +37,9 @@ function Header() {
                 <li className="flex flex-col items-center">
                     <Home className="text-gray-600" />
                 </li>
-
                 <li className="flex flex-col items-center">
                     <Trash2 className="text-gray-600" />
                 </li>
-
                 <li className="flex flex-col items-center">
                     <Settings className="text-gray-600" />
                 </li>
@@ -52,9 +50,9 @@ function Header() {
                 ref={modalRef}
                 className={`${
                     isMenuOpen ? "flex" : "hidden"
-                } animate-bounce flex-col overflow-hidden rounded-lg shadow-sm shadow-black bg-white absolute right-0 top-10 gap-2 items-start justify-center`}
+                } flex-col overflow-hidden rounded-lg shadow-sm shadow-black bg-white absolute right-0 top-10 gap-2 items-start justify-center transition-all ease-in-out duration-200`}
             >
-                <li className="flex flex-row w-full px-5 py-1 cursor-pointer hover:bg-gray-100 items-center gap-1">
+                <li className={`flex flex-row w-full px-5 py-1 cursor-pointer hover:bg-gray-100 items-center gap-1 ${location.pathname === '/' ? 'hidden' : ''}`}>
                     <Home className="text-gray-600" />
                     Casa
                 </li>
@@ -78,12 +76,12 @@ function Header() {
 
             <div
                 onClick={(e) => {
-                    e.stopPropagation(); // Impede que o clique feche o menu imediatamente
+                    e.stopPropagation(); 
                     showMenu();
                 }}
-                className="md:hidden cursor-pointer hover:-scale-y-110 transition-all ease-in-out flex flex-col items-center"
+                className="md:hidden cursor-pointer hover:scale-110 transition-all ease-in-out flex flex-col items-center"
             >
-                <Menu className={`${isMenuOpen ? 'text-white':'text-gray-600'} w-8 h-8 hover:text-white ease-in-out transition-all`} />
+                <Menu className={`${isMenuOpen ? 'text-white' : 'text-gray-600'} w-8 h-8 hover:text-white ease-in-out transition-all`} />
             </div>
         </div>
     );

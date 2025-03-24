@@ -2,9 +2,9 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 function Home() {
-    return(
+    return (
         <div className="w-full h-screen">
-            <Header /> 
+            <Header />
             <Footer />
         </div>
     )
