@@ -1,4 +1,5 @@
 import { Youtube, Twitter, Facebook, Github, Instagram } from 'lucide-react'
+import {Link} from 'react-router-dom'
 
 function Footer() {
 
@@ -20,11 +21,11 @@ function Footer() {
             <div className='flex flex-col p-2'>
                 <p className='text-gray-600 font-semibold'>Minhas redes</p>
                 <hgroup className='flex flex-row gap-1 text-gray-700'>
-                    <Youtube className='w-5 cursor-pointer hover:text-red-600' />
-                    <Twitter className='w-5 cursor-pointer hover:text-blue-400 hover:fill-current' />
-                    <Facebook className='w-5 cursor-pointer hover:text-blue-600 hover:fill-current' />
-                    <Github className='w-5 cursor-pointer hover:text-black hover:fill-current' />
-                    <Instagram className='w-5 cursor-pointer hover:text-yellow-500' />
+                    <Link to='https://www.youtube.com/' ><Youtube className='w-5 cursor-pointer hover:text-red-600' /></Link>
+                    <Link to='https://x.com/edilson1eduardo/' ><Twitter className='w-5 cursor-pointer hover:text-blue-400 hover:fill-current' /></Link>
+                    <Link to='https://facebook.com/edilton.felix/' ><Facebook className='w-5 cursor-pointer hover:text-blue-600 hover:fill-current' /></Link>
+                    <Link to='https://github.com/edilson-eduardo/' ><Github className='w-5 cursor-pointer hover:text-black hover:fill-current' /></Link>
+                    <Link to='https://www.instagram.com/edilson_vita/' ><Instagram className='w-5 cursor-pointer hover:text-yellow-500' /></Link>
                 </hgroup>
             </div>
 
