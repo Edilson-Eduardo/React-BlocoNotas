@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import Notes from '../../components/Notes'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
 function HomePage() {
     const [notes, setNotes] = useState([])
@@ -24,10 +26,10 @@ function HomePage() {
     }
 
     return (
-        <div className='bg-gray-100 min-h-screen flex flex-col items-center justify-center gap-5 px-5 py-10'>
-
+        <div className='bg-gray-100 min-h-screen flex flex-col md:flex-row items-center justify-center gap-5 px-5 py-10'>
+            <Header />
             {/* Formulário de Criação */}
-            <div className='md:absolute left-2 bg-gray-600 md:max-w-96 w-full flex flex-col gap-2 mx-auto rounded-lg p-4 shadow-md shadow-black'>
+            <div className='bg-gray-600 md:max-w-96 w-full flex flex-col gap-2 mx-auto rounded-lg p-4 shadow-md shadow-black'>
                 <h1 className='text-xl font-bold text-white text-center'>Criar nova nota</h1>
 
                 <div className='w-full bg-transparent flex flex-col gap-2'>
@@ -57,10 +59,11 @@ function HomePage() {
             </div>
 
             {/* Lista de Notas */}
-            <div className='w-full md:w-[70%] self-end grid grid-cols-1 md:grid-cols-3 gap-4 shadow-sm shadow-black bg-white p-4 rounded-lg'>
+            <div className={`${notes && notes.length < 1 ? 'none' : 'grid'} w-full md:w-[70%] grid-cols-1 md:grid-cols-3 gap-4 shadow-sm shadow-black bg-white p-4 rounded-lg`}>
                 <Notes notas={notes} />
             </div>
 
+            <Footer />
         </div>
     )
 }
