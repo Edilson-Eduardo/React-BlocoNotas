@@ -1,4 +1,4 @@
-import { Home, Settings, Trash2, Menu, UserRound, ZoomIn } from "lucide-react";
+import { Home, Settings, Trash2, Menu, UserRound, ZoomIn, Edit} from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useLocation, Link } from "react-router-dom";
 
@@ -30,31 +30,31 @@ function Header() {
     return (
         <div className="flex flex-row w-full justify-between fixed top-0 bg-gray-300 p-2">
             <div className="flex flex-col items-center">
-                <Menu className="text-gray-600" />
+                <span className="animate-bounce text-lg font-extrabold">Edilson</span>
             </div>
 
             <ul className="md:flex hidden flex-row gap-2 bg-gray-500 px-2 py-1 rounded-lg items-center justify-center">
-                <Link to='/' className={`flex flex-row w-full cursor-pointer rounded-full items-center transition-all ease-in-out p-1 gap-1 ${location.pathname === '/' ? 'bg-white' : ''}`}>
+                <Link to='/' className={`flex flex-row w-full cursor-pointer rounded-full items-center transition-all ease-in-out p-1 gap-1 ${location.pathname === '/' ? 'bg-white shadow-black shadow-md' : ''}`}>
                     <Home className="text-gray-600" />
                 </Link>
 
-                <Link to='/annotations' className={`flex flex-row w-full cursor-pointer items-center rounded-full transition-all ease-in-out p-1 gap-1 ${location.pathname === '/annotations' ? 'bg-white' : ''}`}>
-                    <Home className="text-gray-600" />
+                <Link to='/annotations' className={`flex flex-row w-full cursor-pointer items-center rounded-full transition-all ease-in-out p-1 gap-1 ${location.pathname === '/annotations' ? 'bg-white shadow-black shadow-md' : ''}`}>
+                    <Edit className="text-gray-600" />
                 </Link>
 
-                <Link to='/others' className={`flex flex-row w-full cursor-pointer items-center rounded-full transition-all ease-in-out p-1 gap-1 ${location.pathname === '/others' ? 'bg-white' : ''}`}>
+                <Link to='/others' className={`flex flex-row w-full cursor-pointer items-center rounded-full transition-all ease-in-out p-1 gap-1 ${location.pathname === '/others' ? 'bg-white shadow-black shadow-md' : ''}`}>
                     <ZoomIn className="text-gray-600" />
                 </Link>
 
-                <Link to='/about' className={`flex flex-row w-full cursor-pointer items-center rounded-full transition-all ease-in-out p-1 gap-1 ${location.pathname === '/about' ? 'bg-white' : ''}`}>
+                <Link to='/about' className={`flex flex-row w-full cursor-pointer items-center rounded-full transition-all ease-in-out p-1 gap-1 ${location.pathname === '/about' ? 'bg-white shadow-black shadow-md' : ''}`}>
                     <UserRound className="text-gray-600" />
                 </Link>
 
-                <Link to='/trash' className={`flex flex-row w-full cursor-pointer items-center rounded-full transition-all ease-in-out p-1 gap-1 ${location.pathname === '/trash' ? 'bg-white' : ''}`}>
+                <Link to='/trash' className={`flex flex-row w-full cursor-pointer items-center rounded-full transition-all ease-in-out p-1 gap-1 ${location.pathname === '/trash' ? 'bg-white shadow-black shadow-md' : ''}`}>
                     <Trash2 className="text-gray-600" />
                 </Link>
 
-                <Link to='settings' className={`flex flex-row w-full cursor-pointer items-center rounded-full transition-all ease-in-out p-1 gap-1 ${location.pathname === '/settings' ? 'bg-white' : ''}`}>
+                <Link to='settings' className={`flex flex-row w-full cursor-pointer items-center rounded-full transition-all ease-in-out p-1 gap-1 ${location.pathname === '/settings' ? 'bg-white shadow-black shadow-md' : ''}`}>
                     <Settings className="text-gray-600" />
                 </Link>
             </ul>
@@ -68,7 +68,7 @@ function Header() {
                 </Link>
 
                 <Link to='/annotations' className={`flex flex-row w-full px-5 py-1 cursor-pointer hover:bg-gray-100 items-center gap-1 ${location.pathname === '/annotations' ? 'bg-slate-500 text-white' : ''}`}>
-                    <Home className="text-gray-600" />
+                    <Edit className="text-gray-600" />
                     Anotações
                 </Link>
 
