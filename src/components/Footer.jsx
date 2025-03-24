@@ -3,18 +3,18 @@ import { Youtube, Twitter, Facebook, Github, Instagram } from 'lucide-react'
 function Footer() {
 
     return (
-        <div className='absolute flex flex-row justify-between bg-gray-300 w-full min-h-3 bottom-0'>
+        <div className='fixed flex text-sm flex-row justify-between bg-gray-300 w-full min-h-3 bottom-0'>
             <div className='p-1 flex flex-col justify-center items-center'>
                 <p className='text-gray-600 font-semibold'>
                     &copy; copyright - 2025
                 </p>
-                <p className='text-gray-600 font-semibold'>Sobre mim</p>
+                <p className='md:block hidden text-gray-600 font-semibold'>Sobre mim</p>
             </div>
 
             <div className='p-1 flex flex-col justify-center items-center'>
                 <p className='text-gray-600 font-semibold'>Termos de uso</p>
                 <hr/>
-                <p className='text-gray-600 font-semibold'>Mais projetos</p>
+                <p className='hidden md:block text-gray-600 font-semibold'>Mais projetos</p>
             </div>
 
             <div className='flex flex-col p-2'>

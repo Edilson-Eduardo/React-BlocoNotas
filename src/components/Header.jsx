@@ -1,60 +1,92 @@
-import { Home, Settings, Trash2, Menu } from 'lucide-react'
-
+import { Home, Settings, Trash2, Menu, UserRound, ZoomIn } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 function Header() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const modalRef = useRef(null);
+
     function showMenu() {
-        const modal = document.getElementById('modal')
-        
-        modal.classList.toggle('hidden')
-        modal.classList.toggle('flex')
-        
-        document.addEventListener('click', (e) => {
-            modal.classList.contains('flex') && e.target.id !== 'modal' ? modal.classList.remove('flex') : '' 
-        })
+        setIsMenuOpen(!isMenuOpen);
     }
 
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                setIsMenuOpen(false);
+            }
+        }
+
+        if (isMenuOpen) {
+            document.addEventListener("click", handleClickOutside);
+        } else {
+            document.removeEventListener("click", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, [isMenuOpen]);
+
     return (
-        <div className='flex flex-row w-full justify-between absolute top-0 bg-gray-300 p-2'>
-            <div className='flex flex-col items-center'>
-                <Menu className='text-gray-600' />
+        <div className="flex flex-row w-full justify-between fixed top-0 bg-gray-300 p-2">
+            <div className="flex flex-col items-center">
+                <Menu className="text-gray-600" />
             </div>
 
-            <ul className='md:flex hidden flex-row gap-2 items-center justify-center'>
-                <li className='flex flex-col items-center'>
-                    <Home className='text-gray-600' />
+            <ul className="md:flex hidden flex-row gap-2 items-center justify-center">
+                <li className="flex flex-col items-center">
+                    <Home className="text-gray-600" />
                 </li>
 
-                <li className='flex flex-col items-center'>
-                    <Trash2 className='text-gray-600' />
+                <li className="flex flex-col items-center">
+                    <Trash2 className="text-gray-600" />
                 </li>
 
-                <li className='flex flex-col items-center'>
-                    <Settings className='text-gray-600' />
+                <li className="flex flex-col items-center">
+                    <Settings className="text-gray-600" />
                 </li>
             </ul>
 
-            <ul id='modal' className='flex-col hidden overflow-hidden rounded-lg shadow-sm shadow-black bg-white absolute right-0 top-0 gap-2 items-start justify-center'>
-                <li className='flex flex-row w-full px-5 py-1 cursor-pointer hover:bg-gray-100 items-center gap-1'>
-                    <Home className='text-gray-600' />
+            {/* Modal Menu */}
+            <ul
+                ref={modalRef}
+                className={`${
+                    isMenuOpen ? "flex" : "hidden"
+                } animate-bounce flex-col overflow-hidden rounded-lg shadow-sm shadow-black bg-white absolute right-0 top-10 gap-2 items-start justify-center`}
+            >
+                <li className="flex flex-row w-full px-5 py-1 cursor-pointer hover:bg-gray-100 items-center gap-1">
+                    <Home className="text-gray-600" />
                     Casa
                 </li>
-
-                <li className='flex flex-row w-full px-5 py-1 cursor-pointer hover:bg-gray-100 items-center gap-1'>
-                    <Trash2 className='text-gray-600' />
+                <li className="flex flex-row w-full px-5 py-1 cursor-pointer hover:bg-gray-100 items-center gap-1">
+                    <ZoomIn className="text-gray-600" />
+                    Outros
+                </li>
+                <li className="flex flex-row w-full px-5 py-1 cursor-pointer hover:bg-gray-100 items-center gap-1">
+                    <UserRound className="text-gray-600" />
+                    Sobre
+                </li>
+                <li className="flex flex-row w-full px-5 py-1 cursor-pointer hover:bg-gray-100 items-center gap-1">
+                    <Trash2 className="text-gray-600" />
                     Lixo
                 </li>
-
-                <li className='flex flex-row w-full px-5 py-1 cursor-pointer hover:bg-gray-100 items-center gap-1'>
-                    <Settings className='text-gray-600' />
+                <li className="flex flex-row w-full px-5 py-1 cursor-pointer hover:bg-gray-100 items-center gap-1">
+                    <Settings className="text-gray-600" />
                     Definições
                 </li>
             </ul>
 
-            <div onClick={showMenu} className='md:hidden cursor-pointer hover:-scale-y-110 transition-all ease-in-out flex flex-col items-center'>
-                <Menu className='text-gray-600 w-8 h-8 hover:text-white ease-in-out transition-all' />
+            <div
+                onClick={(e) => {
+                    e.stopPropagation(); // Impede que o clique feche o menu imediatamente
+                    showMenu();
+                }}
+                className="md:hidden cursor-pointer hover:-scale-y-110 transition-all ease-in-out flex flex-col items-center"
+            >
+                <Menu className={`${isMenuOpen ? 'text-white':'text-gray-600'} w-8 h-8 hover:text-white ease-in-out transition-all`} />
             </div>
         </div>
-    )
+    );
 }
 
-export default Header
+export default Header;
