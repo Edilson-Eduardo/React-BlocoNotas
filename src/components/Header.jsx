@@ -29,9 +29,9 @@ function Header() {
 
     return (
         <div className="flex flex-row w-full justify-between fixed top-0 bg-gray-300 p-2">
-            <div className="flex flex-col items-center">
-                <span className="animate-bounce text-lg font-extrabold">Edilson</span>
-            </div>
+            <Link to='/' className="flex flex-col items-center">
+                <span className="animate-bounce text-lg font-extrabold">Vi|notes</span>
+            </Link>
 
             <ul className="md:flex hidden flex-row gap-2 bg-gray-500 px-2 py-1 rounded-lg items-center justify-center">
                 <Link to='/' className={`flex flex-row w-full cursor-pointer rounded-full items-center transition-all ease-in-out p-1 gap-1 ${location.pathname === '/' ? 'bg-white shadow-black shadow-md' : ''}`}>
@@ -54,7 +54,7 @@ function Header() {
                     <Trash2 className="text-gray-600" />
                 </Link>
 
-                <Link to='settings' className={`flex flex-row w-full cursor-pointer items-center rounded-full transition-all ease-in-out p-1 gap-1 ${location.pathname === '/settings' ? 'bg-white shadow-black shadow-md' : ''}`}>
+                <Link to='/settings' className={`flex flex-row w-full cursor-pointer items-center rounded-full transition-all ease-in-out p-1 gap-1 ${location.pathname === '/settings' ? 'bg-white shadow-black shadow-md' : ''}`}>
                     <Settings className="text-gray-600" />
                 </Link>
             </ul>
@@ -87,7 +87,7 @@ function Header() {
                     Lixo
                 </Link>
 
-                <Link to='settings' className={`flex flex-row w-full px-5 py-1 cursor-pointer hover:bg-gray-100 items-center gap-1 ${location.pathname === '/settings' ? 'bg-slate-500 text-white' : ''}`}>
+                <Link to='/settings' className={`flex flex-row w-full px-5 py-1 cursor-pointer hover:bg-gray-100 items-center gap-1 ${location.pathname === '/settings' ? 'bg-slate-500 text-white' : ''}`}>
                     <Settings className="text-gray-600" />
                     Definições
                 </Link>

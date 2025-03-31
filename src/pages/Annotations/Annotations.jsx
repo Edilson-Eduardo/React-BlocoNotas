@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Notes from '../../components/Notes'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -8,8 +8,15 @@ function Annotations() {
     const [newNote, setNewNote] = useState({
         title: "",
         content: "",
-        date: new Date().toLocaleDateString()
+        date: new Date().toLocaleDateString(),
+        deleted: false,
+        time: "12:23"
     })
+
+    useEffect(() => {
+        if (localStorage.notes)
+            setNotes(JSON.parse(localStorage.notes))
+    }, [])
 
     function handleInput(e) {
         const { name, value } = e.target
@@ -21,8 +28,8 @@ function Annotations() {
 
     function createNote() {
         setNotes((prev) => [...prev, newNote])
-        console.log("Nota adicionada:", newNote) // Mostra a nota recém-adicionada corretamente
-        setNewNote({ title: "", content: "", date: new Date().toLocaleDateString() })
+        localStorage.notes = JSON.stringify([...notes, newNote])
+        setNewNote({ title: "", time: "13:45", content: "", deleted: false, date: new Date().toLocaleDateString() })
     }
 
     return (
@@ -57,14 +64,7 @@ function Annotations() {
                     Anotar
                 </button>
             </div>
-
-            <div
-                className={`${notes && notes.length < 1 ? "hidden" : "grid"
-                    } w-full grid-cols-1 mb-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 shadow-sm shadow-black bg-white p-4 rounded-lg`}
-            >
-                <Notes notas={notes} />
-            </div>
-
+            <Notes notas={notes} />
 
             <Footer />
         </div>
